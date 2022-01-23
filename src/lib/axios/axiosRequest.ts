@@ -9,7 +9,8 @@ export async function axiosRequest(options: AxiosRequestConfig): Promise<unknown
   try {
     const response = await axios(options);
     return response.data;
-  } catch (error) {
+  } catch (e) {
+    const error = e as any
     if (error.isAxiosError) {
       if (error.response) {
         throw new AxiosServerError(error.response, error);
